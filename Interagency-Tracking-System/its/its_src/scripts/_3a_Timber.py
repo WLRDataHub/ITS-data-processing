@@ -190,6 +190,14 @@ def Timber(input_fc, output_enriched, delete_scratch=True):
             field="ACTIVITY_END",
             expression="!ACTIVITY_END_!"
         )
+
+        # set admin org to 'timber companies'
+        arcpy.management.CalculateField(
+            in_table=Calculate_Fields_10,
+            field="ADMINISTERING_ORG",
+            expression="'Timber Companies'"
+        )
+        
         # Process: Calculate Fund Source (Calculate Field) (management)
         Calculate_Fields_11 = arcpy.management.CalculateField(
             in_table=Calculate_Fields_10,
@@ -324,6 +332,8 @@ def Timber(input_fc, output_enriched, delete_scratch=True):
             field="TRMT_GEOM", 
             expression="'POINT'"
         )
+
+        
 
         # Add simulated locations to the feature class.  Latitudes and Longitude 
         #   coordinates were chosen to be within the simulated ownership polygon
@@ -498,10 +508,10 @@ def Timber(input_fc, output_enriched, delete_scratch=True):
             "LATITUDE",
             "LONGITUDE",
             "Val_Status_p",
-            "Val_Message_p",
+            "Val_MSG_p",
             "Val_RunDate_p",
             "Review_Status_p",
-            "Review_Message_p",
+            "Review_MSG_p",
             "Review_RunDate_p",
             "Dataload_Status_p",
             "Dataload_Msg_p",
@@ -523,10 +533,10 @@ def Timber(input_fc, output_enriched, delete_scratch=True):
             "RETREATMENT_DATE_EST",
             "TREATMENT_NAME",
             "Val_Status_t",
-            "Val_Message_t",
+            "Val_MSG_t",
             "Val_RunDate_t",
             "Review_Status_t",
-            "Review_Message_t",
+            "Review_Msg_t",
             "Review_RunDate_t",
             "Dataload_Status_t",
             "Dataload_Msg_t",
@@ -620,6 +630,14 @@ def Timber(input_fc, output_enriched, delete_scratch=True):
             in_features=Calculate_Fields_34,
             out_feature_class=Timber_Industrial_enriched,
         )
+
+        # add non-existing filler columns
+        for f in ['BatchID', 'BatchID_p', 'Review_MSG_t']:
+            arcpy.management.CalculateField(
+                in_table=Timber_Industrial_enriched, 
+                field=f, 
+                expression="''"
+            )
 
         # Remove non-schema fields
         keepfields_1 = KeepFields(Timber_Industrial_enriched)

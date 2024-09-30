@@ -129,7 +129,7 @@ def CountsToMAS(Input_Table):
                         in_table=calc_field_6, 
                         field="COUNTS_TO_MAS", expression="ifelse(!Year_txt!,!AGENCY!,!TRMTID_USER!,!COUNTS_TO_MAS!)", 
                         code_block="""def ifelse(Year, Agency, TRMTID, Counts):
-                            if Year == '2023' and TRMTID[:5] == 'PFIRS' and Agency == 'California State Parks':
+                            if Year == '2023' and TRMTID[:5] == 'PFIRS' and Agency == 'PARKS':
                                 return 'NO'
                             else:
                                 return Counts"""

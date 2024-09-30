@@ -27,7 +27,7 @@ def Category(Input_Table):
                 return Act
             if Act in ["BIOMASS_REMOVAL", "CHIPPING", "CHAIN_CRUSH", "DISCING", "DOZER_LINE", "HANDLINE", 
             "LANDING_TRT", "LOP_AND_SCAT", "MASTICATION", "MOWING", "PILE_BURN", "PILING", "PRUNING", 'ROAD_CLEAR',  
-            "SLASH_DISPOSAL", "THIN_MAN", "THIN_MECH", "TREE_RELEASE_WEED", "TREE_FELL", "UTIL_RIGHTOFWAY_CLR", "YARDING"]:
+            "SLASH_DISPOSAL", "THIN_MAN", "THIN_MECH", "TREE_RELEASE_WEED", "TREE_FELL", "UTIL_RIGHTOFWAY_CLR", "YARDING", "PEST_CNTRL"]:
                 return "MECH_HFR"
             if Act in ["CLEARCUT", "COMM_THIN", "CONVERSION", "GRP_SELECTION_HARVEST", 
             "REHAB_UNDRSTK_AREA", "SEED_TREE_PREP_STEP", "SEED_TREE_REM_STEP", "SEED_TREE_SEED_STEP", 
@@ -37,10 +37,6 @@ def Category(Input_Table):
             if Act in ["SALVG_HARVEST", 'SANI_HARVEST']:
                 # return "SANI_SALVG"
                 return "TIMB_HARV"
-            if Act == "PEST_CNTRL" and Veg == "FOREST":
-                return "SANI_SALVG"
-            if Act == "PEST_CNTRL" and Veg != "FOREST":
-                return "WATSHD_IMPRV"
             if Act in ["INV_PLANT_REMOVAL", "ECO_HAB_RESTORATION"]:
                 return "WATSHD_IMPRV"
             if Act == "HERBICIDE_APP" and Obj in ["BURNED_AREA_RESTOR", "CARBON_STORAGE", 
