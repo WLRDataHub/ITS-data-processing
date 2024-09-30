@@ -1,0 +1,6 @@
+# Setup Geodatabase references 
+gdb:
+  original: 'Interagency Tracking System.gdb'
+
+scratch:
+  
